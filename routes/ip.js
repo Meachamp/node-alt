@@ -7,7 +7,9 @@ module.exports = (app) => {
 
         let session = db.session()
 
-        session.run('MATCH (suspect:IP {id:steamParam})-[*1..9]-(alt:Player) RETURN DISTINCT alt.id', {steamParam: req.body.ip})
+        let ip = req.body.ip
+
+        session.run('MATCH (suspect:IP {id:steamParam})-[*1..9]-(alt:Player) RETURN DISTINCT alt.id', {steamParam: ip})
         .then((result) => {
             response.records = result.records
             response.count = result.records.length
