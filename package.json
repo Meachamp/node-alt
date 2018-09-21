@@ -4,6 +4,7 @@
   "description": "Application of graph theory to help combat ban evasion",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
     "neo4j-driver": "^1.6.3"
