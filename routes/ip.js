@@ -2,20 +2,23 @@ const db = require('../db')
 
 module.exports = (app) => {
     app.post('/ip', (req, res) => {
-        let response = {success: false}
+        let response = {success: true}
         let token = req.body.token;
 
         let session = db.session()
 
         let ip = req.body.ip
 
-        session.run('MATCH (suspect:IP {id:steamParam})-[*1..9]-(alt:Player) RETURN DISTINCT alt.id', {steamParam: ip})
+        session.run('MATCH (suspect:IP {id:{ipParam})-[*1..9]-(alt:Player) RETURN DISTINCT alt.id', {ipParam: ip})
         .then((result) => {
-            response.records = result.records
+            response.records = result.records.map((rec) => {
+                return rec.get('alt.id').toString()
+            })
             response.count = result.records.length
             session.close()
             res.send(response)
         }).catch((err) => {
+            response.success = false
             res.send(response)
             console.log(err)
         })
