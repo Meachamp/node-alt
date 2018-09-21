@@ -11,7 +11,6 @@ module.exports = (app) => {
 
         session.run('MATCH (suspect:Player {id:{steamParam}})-[*1..9]-(alt:Player) RETURN DISTINCT alt.id', {steamParam: steamid})
         .then((result) => {
-            console.log(result.records[0].get(0))
             response.records = result.records.map((rec) => {
                 return rec.get('alt.id').toString()
             })
