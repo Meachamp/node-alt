@@ -18,7 +18,7 @@ module.exports = (app) => {
             return
         }
 
-        let authorized = await auth.checkToken(req.body.token)
+        let authorized = await auth.checkToken(token)
 
         if(!authorized) {
             response.success = false

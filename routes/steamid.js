@@ -2,7 +2,7 @@ const db = require('../db')
 const auth = require('../auth')
 
 module.exports = (app) => {
-    app.post('/steamid', (req, res) => {
+    app.post('/steamid', async (req, res) => {
         let response = {success: true}
         let token = req.body.token;
         let steamid = req.body.steamid

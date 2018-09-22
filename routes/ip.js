@@ -3,7 +3,7 @@ const auth = require('../auth')
 
 
 module.exports = (app) => {
-    app.post('/ip', (req, res) => {
+    app.post('/ip', async (req, res) => {
         let response = {success: true}
         let token = req.body.token
         let ip = req.body.ip
