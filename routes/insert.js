@@ -2,7 +2,7 @@ const db = require('../db')
 
 module.exports = (app) => {
     app.post('/insert', (req, res) => {
-        let response = {success: false}
+        let response = {success: true}
         let token = req.body.token;
 
         let session = db.session()
