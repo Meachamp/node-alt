@@ -16,6 +16,6 @@ fs.readdirSync(path.join(__dirname, "routes")).forEach((f) => {
     require('./routes/' + f)(app)
 })
 
-app.listen(config.server.listenPort, () => {
+app.listen(config.server.listenPort, '0.0.0.0', () => {
     console.log('Server started.')
 })
